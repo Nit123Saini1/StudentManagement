@@ -1,0 +1,104 @@
+﻿@model EditModel
+
+@{
+    var Classes = ViewBag.Classes;
+    var Subjects = ViewBag.Subjects;
+
+   
+}
+
+
+
+<div class="register-box">
+    <div class="register-logo">
+        <h3>Edit</h3>
+    </div>
+    <div class="card-body register-card-body">
+
+
+        <form asp-action="Edit" asp-controller="home" method="post">
+
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="StdSubMarkID" />
+            <div class="row" style="margin:10px">
+                <div class="col-4">
+                    <label asp-for="FirstName"></label>
+                    <input asp-for="FirstName" class="form-control" placeholder="Enter First Name" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row" style="margin:10px">
+                <div class="col-4">
+                    <label asp-for="LastName"></label>
+                    <input asp-for="LastName" class="form-control" placeholder="Enter Last Name" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row" style="margin:10px">
+                <div class="col-4">
+                    <label asp-for="ClassId"></label><br />
+                    <select asp-for="ClassId" class="form-control">
+                        @foreach (var item in Classes)
+                        {
+                            if (item.Id == Model.ClassId)
+                            {
+                                <option value="@item.Id" selected>@item.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="ClassId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row" style="margin:10px">
+                <div class="col-4">
+                    <label asp-for="SubjectId"></label><br />
+                    <select asp-for="SubjectId" class="form-control">
+                        @foreach (var item in Subjects)
+                        {
+                            if (item.Id == Model.SubjectId)
+                            {
+                                <option value="@item.Id" selected>@item.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        }
+                    </select>
+
+                </div>
+            </div>
+
+            <div class="row" style="margin:10px">
+                <div class="col-4">
+                    <label asp-for="Marks"></label>
+                    <input asp-for="Marks" class="form-control" placeholder="Enter marks" />
+
+                </div>
+            </div>
+
+            <div class="row" style="margin:10px">
+                <div class="col-2">
+
+                    <button type="submit" class="btn btn-primary btn-block">Save</button>
+                </div>
+
+            </div>
+        </form>
+
+        <br />
+        <br />
+
+    </div>
+</div>
+
+
+
+
+

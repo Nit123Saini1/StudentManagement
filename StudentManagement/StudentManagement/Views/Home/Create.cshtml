@@ -1,0 +1,95 @@
+﻿@model CreateModel
+
+    @{
+       // var subjects = ViewBag.Subjects;
+    }
+
+
+
+    <div class="register-box">
+        <div class="register-logo">
+            <h3>Add Student</h3>
+        </div>
+        <div class="card-body register-card-body">
+
+
+            <form  asp-action="create" asp-controller="home" method="post">
+
+                
+                <div class="row" style="margin:10px">
+                    <div class="col-4">
+                        <label asp-for="FirstName"></label>
+                        <input asp-for="FirstName" class="form-control" placeholder="Enter First Name" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row" style="margin:10px">
+                    <div class="col-4">
+                        <label asp-for="LastName"></label>
+                        <input asp-for="LastName" class="form-control" placeholder="Enter Last Name" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row" style="margin:10px">
+                    <div class="col-4">
+                        <label asp-for="Class"></label><br />
+                        <select asp-for="Class" class="form-control" asp-items="@(new SelectList(ViewBag.Class,"Id","Name"))">
+                            <option value="" selected >Please select class</option>
+                        </select>
+                        <span asp-validation-for="Class" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row" style="margin:10px">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <td>Subject</td>
+                                <td>Marks</td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.SubjectAndMark.Count; i++)
+                            {
+                            <tr style="margin:2px">
+                                <td><input type="checkbox" asp-for="@Model.SubjectAndMark[i].Selected" /></td>
+                                <td>
+                                    <label asp-for="@Model.SubjectAndMark[i].Selected">@Model.SubjectAndMark[i].SubjectName</label>
+                                    <input type="hidden" asp-for="@Model.SubjectAndMark[i].SubjectId" />
+                                    <input type="hidden" asp-for="@Model.SubjectAndMark[i].SubjectName" />
+                                </td>
+                                <td>
+                                    <input asp-for="SubjectAndMark[i].Marks" />
+                                </td>
+                                
+                            </tr>
+                                
+                                
+
+                            }
+                        </tbody>
+                    </table>
+                    
+
+                </div>
+                <div><span class="text-danger">@ViewBag.selectedError</span></div>
+                <div class="row" style="margin:10px">
+                    <div class="col-2">
+
+                        <button type="submit" class="btn btn-primary btn-block">Save</button>
+                    </div>
+
+                </div>
+            </form>
+
+            <br />
+            <br />
+
+        </div>
+    </div>
+
+
+
+
+
